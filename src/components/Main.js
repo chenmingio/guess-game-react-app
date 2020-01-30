@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, Component } from 'react'
 import { Grid } from '@material-ui/core'
 import Header from './Header'
 import Player from './Player'
@@ -10,10 +10,10 @@ const style = {
     Paper: { padding: 20, marginTop: 10, marginBottom: 10 }
 }
 
-class Main extends Component {
-    state = {
-        room: 106,
-        playerList: [
+function Main() {
+    const [room, setRoom] = useState(null)
+    const [playerList, setPlayerList] = useState(
+        [
             {
                 name: "CM",
                 is_guesser: true,
@@ -24,25 +24,16 @@ class Main extends Component {
                 hint: "happy"
             }
         ]
-    }
+    )
 
-    componentDidMount() {
-        // update the state
-    }
-
-    render() {
-        const { room, playerList } = this.state
-
-        return (
-            <Grid container>
-                <Header room={room} />
-                <Player style={style.Paper} playerList={playerList} />
-                <Word style={style} />
-                <Input style={style} />
-            </Grid>
-        )
-    }
-
+    return (
+        <Grid container>
+            <Header room={room} />
+            <Player style={style.Paper} playerList={playerList} />
+            <Word style={style} />
+            <Input style={style} />
+        </Grid>
+    )
 }
 
 export default Main
